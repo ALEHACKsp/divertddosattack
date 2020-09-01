@@ -1,0 +1,25 @@
+Divert denials of basic services
+Access document for Hosting and XAMPP / AppServer / Webhost
+
+With this document you can divert basic DDoS attacks to another website, just specify it:
+Code:
+
+RewriteEngine on
+RewriteCond %{QUERY_STRING} ^([0-9]+)$ [NC,OR]
+RewriteCond %{QUERY_STRING} ^(.*)\?([0-9]+)(.*)$ [NC,OR]
+RewriteCond %{QUERY_STRING} ^([0-9]+\.[0-9])(.*)$ [NC,OR]
+RewriteCond %{QUERY_STRING} ^(.*)\?([0-9]+\.[0-9])(.*)$ [NC]
+RewriteRule ^(.*)$ http://zodiacgames.network/ [L]
+
+Change URL Above to the Website URL you want to Divert:
+
+Return the attack to the IP:
+
+Code:
+
+RewriteEngine on
+RewriteCond %{QUERY_STRING} ^([0-9]+)$ [NC,OR]
+RewriteCond %{QUERY_STRING} ^(.*)\?([0-9]+)(.*)$ [NC,OR]
+RewriteCond %{QUERY_STRING} ^([0-9]+\.[0-9])(.*)$ [NC,OR]
+RewriteCond %{QUERY_STRING} ^(.*)\?([0-9]+\.[0-9])(.*)$ [NC]
+RewriteRule ^(.*)$ http://%{REMOTE_ADDR} [L]
